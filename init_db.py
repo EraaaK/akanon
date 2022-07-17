@@ -13,6 +13,7 @@ def initDB():
     cur = connection.cursor()
 
     for i in range(len(ticketList)):
+
         cur.execute("INSERT INTO tickets (ticket_number, ticket_status, ticket_agent, ticket_type, ticket_group, ticket_sla, ticket_url) VALUES (?, ?, ?, ?, ?, ?, ?)",
                     (
                         ticketList[i]['number'],
