@@ -19,9 +19,31 @@
         </div>
     </nav>
 
-    <div class="btn_text">
-        <button>Olá</button>
-    </div>
+    <table class="table is-fullwidth is-striped is-bordered">
+        <thead>
+            <tr>
+                <th>Estado</th>
+                <th>Ticket</th>
+                <th>Responsável</th>
+                <th>Tipo</th>
+                <th>Grupo</th>
+                <th>SLA</th>
+                <th>Acessar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+            <tr>
+                <th> {{ ticket.ticket_status }} </th>
+                <td> {{ ticket.ticket_number }} </td>
+                <td> {{ ticket.ticket_agent }} </td>
+                <td> {{ ticket.ticket_type }} </td>
+                <td> {{ ticket.ticket_group }} </td>
+                <td> {{ ticket.ticket_sla }} </td>
+                <td> {{ ticket.ticket_url }} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
 </body>
 
 </html>
