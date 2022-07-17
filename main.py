@@ -1,11 +1,12 @@
-from flask import Flask
+from flask import Flask, render_template
+from api import InboxAPI
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def raiz():
-    return "Olá"
+    return 'Tete'
 
 
 app.run()

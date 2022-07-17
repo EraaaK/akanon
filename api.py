@@ -13,7 +13,7 @@ class InboxAPI:
     def __init__(self):
         pass
 
-    def GetDepartmentsName(self):
+    def GetDepartmentsName(*args):
         # GET departments without other channels, only Inbox
         departments = 'departments'
         inboxApiGETDepartments = 'https://api.directtalk.com.br/1.5/ticket/' + departments
