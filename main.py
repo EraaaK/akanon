@@ -1,5 +1,6 @@
 import sqlite3
 from flask import Flask, render_template
+import init_db
 
 app = Flask(__name__)
 
@@ -18,4 +19,5 @@ def home():
     return render_template('index.html', tickets=tickets)
 
 
+init_db.initDB()
 app.run()

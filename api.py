@@ -49,6 +49,7 @@ class InboxAPI:
         else:
             app_data.DesktopNotify(response.status_code,
                                    "Falha ao buscar tickets.", 15)
+        return ticketList
 
 
 if __name__ == '__main__':

@@ -1,17 +1,28 @@
 import sqlite3
+from api import InboxAPI as function
 
-connection = sqlite3.connect('database.db')
 
+def initDB():
 
-with open('schema.sql') as f:
-    connection.executescript(f.read())
+    ticketList = function.GetTicketsByDepartment()
+    connection = sqlite3.connect('database.db')
 
-cur = connection.cursor()
+    with open('schema.sql') as f:
+        connection.executescript(f.read())
 
-cur.execute("INSERT INTO tickets (ticket_number, ticket_status, ticket_agent, ticket_type, ticket_group, ticket_sla, ticket_url) VALUES (?, ?, ?, ?, ?, ?, ?)",
-            ('11223344', 'Aberto', 'William', 'Customer Care Baixo',
-             'Customer Care - YV', '25/07/2022 15:06:33', 'www.google.com')
-            )
+    cur = connection.cursor()
 
-connection.commit()
-connection.close()
+    for i in range(len(ticketList)):
+        cur.execute("INSERT INTO tickets (ticket_number, ticket_status, ticket_agent, ticket_type, ticket_group, ticket_sla, ticket_url) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                    (
+                        ticketList[i]['number'],
+                        ticketList[i]['state']['name'],
+                        ticketList[i]['responsible']['name'],
+                        ticketList[i]['type']['name'],
+                        ticketList[i]['group']['name'],
+                        str(ticketList[i]['deadline']),
+                        '-')
+                    )
+
+    connection.commit()
+    connection.close()
