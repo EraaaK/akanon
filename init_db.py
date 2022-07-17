@@ -18,9 +18,9 @@ def initDB():
                     (
                         ticketList[i]['number'],
                         ticketList[i]['state']['name'],
-                        ticketList[i]['responsible']['name'],
-                        ticketList[i]['type']['name'],
-                        ticketList[i]['group']['name'],
+                        str(ticketList[i]['responsible']['name']),
+                        str(ticketList[i]['type']['name']),
+                        str(ticketList[i]['group']['name']),
                         str(ticketList[i]['deadline']),
                         '-')
                     )
