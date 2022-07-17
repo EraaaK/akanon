@@ -33,7 +33,24 @@ class InboxAPI:
 
         return departmentsNameList
 
+    def GetTicketsByDepartment(*args):
+        departmentKey = 'd50767b6-52c1-40dc-8d9a-3328eeb8f94d'
+        hiAPI = 'https://api.directtalk.com.br/1.5/ticket/tickets?departmentId=' + departmentKey
+        response = requests.get(hiAPI, headers=auth())
+        ticketsData = json.loads(response.content)
+        ticketList = []
+
+        for i in range(len(ticketsData)):
+            ticketList.append(ticketsData[i])
+
+        if response.status_code == 200:
+            app_data.DesktopNotify("Sucesso!", "Foram encontrados " +
+                                   str(len(ticketList)) + " tickets.", 15)
+        else:
+            app_data.DesktopNotify(response.status_code,
+                                   "Falha ao buscar tickets.", 15)
+
 
 if __name__ == '__main__':
     start = InboxAPI()
-    start.GetDepartmentsName()
+    start.GetTicketsByDepartment()
