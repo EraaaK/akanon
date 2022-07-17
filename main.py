@@ -5,8 +5,8 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def raiz():
-    return 'Tete'
+def home():
+    return render_template('index.html')
 
 
 app.run()
